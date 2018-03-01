@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Filter</title>
+</head>
+<body>
+	<div ng-app="myApp" ng-controller="firstControllers">
+    <H1>表达式中添加过滤器</H1>
+        <p>1、uppercase，lowercase 大小写转换</p>
+        {{ "lower cap string" | uppercase }}<br>   
+        {{ "TANK is GOOD" | lowercase }}  
+
+        <p>2、date 格式化</p>
+        {{1490161945000 | date:"yyyy-MM-dd HH:mm:ss"}}</br>
+        <span>{{1288323623006 | date:'yyyy-MM-dd HH:mm:ss Z'}}</span></br>
+        <span>{{'1288323623006' | date:'MM/dd/yyyy @ h:mma'}}</span></br>
+        <span>{{'1288323623006' | date:"MM/dd/yyyy 'at' h:mma"}}</span></br>
+          
+        <p>3、number 格式化（保留小数）</p>
+        {{149016.1945000 | number:2}}
+
+        <p>4、currency货币格式化</p>
+        {{ 250 | currency }} <br>
+        {{ 250 | currency:"RMB ￥ " }}
+
+        <p>5、filter查找</p>
+        <p>查找name为iphone的行</p>
+        {{ [{"age": 20,"id": 10,"name": "iphone"},
+        {"age": 12,"id": 11,"name": "sunm xing"},
+        {"age": 44,"id": 12,"name": "test abc"}
+        ] | filter:{'name':'iphone'} }}   
+
+        <p>6、limitTo 截取</p>
+        {{"1234567890" | limitTo :6}}<br>
+        {{"1234567890" | limitTo:-4}}
+          
+        <p>7、orderBy 排序</p>
+        <p>根id降序排</p>
+        {{ [{"age": 20,"id": 10,"name": "iphone"},
+        {"age": 12,"id": 11,"name": "sunm xing"},
+        {"age": 44,"id": 12,"name": "test abc"}
+        ] | orderBy:'id':true }}
+          
+        <p>根据id升序排</p>
+        {{ [{"age": 20,"id": 10,"name": "iphone"},
+        {"age": 12,"id": 11,"name": "sunm xing"},
+        {"age": 44,"id": 12,"name": "test abc"}
+        ] | orderBy:'id' }}
+         
+        <p>7、自定义过滤器以下实例自定义一个过滤器 reverse，将字符串反转：</p>
+        {{ msg | reverse }}
+
+        <H1>向指令添加过滤器</H1>
+        <p>循环对象:</p>
+        <ul>
+          <li ng-repeat="x in names | orderBy:'country'">
+            {{ x.name + ', ' + x.country }}
+          </li>
+        </ul>
+        <p>过滤输入:</p>
+        <p><input type="text" ng-model="test"></p>
+
+        <ul>
+          <li ng-repeat="x in names | filter:test | orderBy:'country'">
+            {{ (x.name | uppercase) + ', ' + x.country }}
+          </li>
+        </ul>
+
+    </div>
+
+</body>
+<script type="text/javascript" src="../../vendor/angular/angularjs.js"></script>
+<script type="text/javascript" src="./app/index.js"></script>
+</html>

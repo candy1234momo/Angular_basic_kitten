@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>控制器</title>
+</head>
+<body>
+	<div ng-app="">
+        <div ng-controller="firstController">
+            <!-- 数据绑定 -->
+        	<input value="" type="text" ng-model="name"/>{{name}}
+        	<div ng-bind="name"></div>
+
+        	</br>
+        	</br>
+        	<!-- $apply $watch -->
+        	<div>
+        	    <!-- $apply -->
+        		<p>{{data}}</p>
+        		</br>
+                <!-- $watch -->
+        		<input type="text" value="" ng-model="name2">{{count}}次{{name2}}                
+        	</div>
+
+
+        	</br>
+        	</br>
+            <!-- 多个控制器 -->
+        	<div ng-controller="secondController">
+        		<input type="text" value="" ng-model="name"/>
+        	</div>
+        </div>
+	</div>
+</body>
+<script type="text/javascript" src="./app/index.js"></script>
+<script type="text/javascript" src="../../vendor/angular/angularjs.js"></script>
+</html>
